@@ -6,6 +6,8 @@ from io import BytesIO
 import redis
 import socket
 from uuid import uuid4
+import urllib.request
+external_ip = urllib.request.urlopen('https://ident.me').read().decode('utf8')
 
 REDIS_CONNECTION = redis.Redis()
 IMAGE_FILE_TYPES = ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/tiff", "image/psd", "image/ai", "image/eps", "image/indd", "image/raw"]
@@ -30,7 +32,7 @@ class ImageUploader():
                 img = BytesIO()
                 image.save(img, format="JPEG")
                 img_str = base64.b64encode(img.getvalue())
-                image_file_url = socket.gethostbyname(socket.gethostname()) + "_" + str(uuid4())
+                image_file_url = external_ip + "_" + "Image" + "_" + str(uuid4())
                 self.cache_image_in_memory(image_file_url, img_str)
                 return image_file_url
         else:
