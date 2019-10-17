@@ -16,6 +16,10 @@ class ImageUploader():
         self.dimension = [0,0]
 
     def cache_image_in_memory(self, image_url, image):
+        """
+         The Redis database is used to cache images in memory
+	 and a database to store the images.
+        """
         REDIS_CONNECTION.set(image_url, image)
 
     def upload_to_servers(self, image_file):
