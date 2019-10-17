@@ -7,6 +7,6 @@ run the API with 'python main.py'
 Send the url as form data: key = 'url', value='[image link]'
 You will receive the uploaded image link as a JSON image
 
-POST /upload
+POST 157.245.81.95:5000/upload
 
 
